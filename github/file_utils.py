@@ -6,7 +6,11 @@ usr2cache = lambda usr  : '.{}.cache'.format(usr)
 
 def is_cache_obsolete(username):
     # figure out if cache needs to be updated
-    (_, _, _, _, _, _, _, _, mtime, _) = os.stat(usr2cache(username))
+    try:
+        (_, _, _, _, _, _, _, _, mtime, _) = os.stat(usr2cache(username))
+    except OSError:
+        return True
+
     current_time = lambda: int(round(time.time()))
     return (current_time() - mtime) > 3600
 
