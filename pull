@@ -1,0 +1,31 @@
+#!/bin/bash
+
+####
+# fluff
+# 	COLORS
+suc='\033[0;32m'
+err='\033[0;31m'
+war='\033[1;36m'
+
+# arguments
+arg1=$1
+
+if [ -z "$arg1" ]; then 
+	echo -e ">> $war usage : pull <keyword>"
+	exit
+fi
+
+if [ $arg1 == 'reveal' ]
+then
+	###
+	# reveal template
+	###
+	echo -e ">> $suc clone via https;"
+	git clone --depth=1 https://github.com/suriyadeepan/reveal-template
+	# remove git history
+	mv reveal-template/* .
+	rm -rf reveal-template
+	echo -e ">> $suc cleanup complete;"
+else
+	echo -e ">> $err error : need valid keyword"
+fi
