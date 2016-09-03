@@ -1,0 +1,10 @@
+if [ $1 == 'zsh' ]; then
+	shell_conf='~/.zshrc'
+else
+	shell_conf='~/.bashrc'
+fi
+
+# append to conf file
+cat clone.fn >> $shell_conf
+
+echo '>> Do source.'
